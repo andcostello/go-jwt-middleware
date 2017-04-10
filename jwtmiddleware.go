@@ -54,7 +54,7 @@ type Options struct {
 	// Use JSON Number format in JSON decoder
 	UseJSONNumber bool
 	// The claims interface which to parse the results into
-	claims Claims
+	Claims jwt.Claims
 }
 
 type JWTMiddleware struct {
