@@ -206,7 +206,7 @@ func (m *JWTMiddleware) CheckJWT(w http.ResponseWriter, r *http.Request) error {
 
 	// Now parse the token
 	parser := &jwt.Parser{UseJSONNumber: m.Options.UseJSONNumber}
-	parsedToken, err := parser.ParseWithClaims(token, m.Options.claims)
+	parsedToken, err := parser.ParseWithClaims(token, m.Options.Claims, m.Options.ValidationKeyGetter)
 
 	// Check if there was an error in parsing...
 	if err != nil {
