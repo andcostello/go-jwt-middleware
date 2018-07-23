@@ -53,8 +53,8 @@ type Options struct {
 	SigningMethod jwt.SigningMethod
 	// Use JSON Number format in JSON decoder
 	UseJSONNumber bool
-	// The claims interface which to parse the results into
-	Claims jwt.Claims
+	// A function which returns an instance of the jwt.Claims interface
+	NewClaims func() jwt.Claims
 }
 
 type JWTMiddleware struct {
@@ -206,7 +206,7 @@ func (m *JWTMiddleware) CheckJWT(w http.ResponseWriter, r *http.Request) error {
 
 	// Now parse the token
 	parser := &jwt.Parser{UseJSONNumber: m.Options.UseJSONNumber}
-	parsedToken, err := parser.ParseWithClaims(token, m.Options.Claims, m.Options.ValidationKeyGetter)
+	parsedToken, err := parser.ParseWithClaims(token, m.Options.NewClaims(), m.Options.ValidationKeyGetter)
 
 	// Check if there was an error in parsing...
 	if err != nil {
