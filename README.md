@@ -116,7 +116,7 @@ type Options struct {
   // The name of the property in the request where the user information
   // from the JWT will be stored.
   // Default value: "user"
-  UserProperty string
+  UserProperty interface{}
   // The function that will be called when there's an error validating the token
   // Default value: https://github.com/auth0/go-jwt-middleware/blob/master/jwtmiddleware.go#L35
   ErrorHandler errorHandler
