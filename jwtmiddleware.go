@@ -30,7 +30,7 @@ type Options struct {
 	// The name of the property in the request where the user information
 	// from the JWT will be stored.
 	// Default value: "user"
-	UserProperty string
+	UserProperty interface{}
 	// The function that will be called when there's an error validating the token
 	// Default value:
 	ErrorHandler errorHandler
@@ -75,7 +75,7 @@ func New(options ...Options) *JWTMiddleware {
 		opts = options[0]
 	}
 
-	if opts.UserProperty == "" {
+	if opts.UserProperty == nil {
 		opts.UserProperty = "user"
 	}
 
